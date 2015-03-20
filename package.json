@@ -7,10 +7,12 @@
     "yargs": "*",
     "request": "*",
     "fs-extra": "*",
-    "ya-csv": "*"
+    "ya-csv": "*",
+    "q": "*"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "chai": "*"
   },
    "scripts": {
     "test": "mocha test"

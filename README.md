@@ -14,6 +14,12 @@ To operate:
 
 It will create sortedMovies.csv file, where you will see the Title of the movie and the date it was released
 
+#### Test
+
+Using mocha to test:
+
+  mocha test
+
 
   
 

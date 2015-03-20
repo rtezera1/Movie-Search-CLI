@@ -9,6 +9,8 @@ var async = require('async'),
 var argv = require('yargs')
     .usage('-t [Title of Movie] Ex. Titanic or The-Matrix')
     .alias('t', 'Movie Title')
+    .boolean('v', 'verbose')
+    .default('v', false)
     .argv;
 
 // Makes a request to the OMDBapi to get JSON object about a movie specified
@@ -17,7 +19,6 @@ function OMDBapiRequest (callback) {
     if (err) {
       callback(err)
     } else {
-      console.log('dlkfjd')
       var MovieParsed = JSON.parse(res.body);
       callback(null, MovieParsed)
     }
@@ -66,35 +67,27 @@ function writeBacktoCSV (toBeSorted, callback) {
 This is where the excution starts:
 Go to the sortedMovies.csv to see the sorted movies
 */
-function MoviesReleaseDate (title, next)  {
-  movieTitle = argv.t || title; 
-  async.waterfall([
-    OMDBapiRequest,
-    ParseMovieData,
-    SortMovies,
-    writeBacktoCSV 
-    ], function (err, res) {
+movieTitle = argv.t
+
+async.waterfall([
+  OMDBapiRequest,
+  ParseMovieData,
+  SortMovies,
+  writeBacktoCSV 
+  ], function (err, res) {
+    // if verbose, it has output after every iteration
+    if (argv.v !== false) {
       if (err) {
-        next(err)
+        console.log(err)
       } else {
-        next()
+        console.log('Done.')
       }
-    }
-  )
-}
+    } 
+  }
+)
 
-if (argv.t !== null) { 
-  MoviesReleaseDate(movieTitle, function (err, res) {
-    if (err) {
-      console.log('ERR', err)
-    } else {
-      console.log('DONE')
-    }
-  })
-} 
 
-module.exports = {
-  MoviesReleaseDate: MoviesReleaseDate
-}
+
+
   
 
