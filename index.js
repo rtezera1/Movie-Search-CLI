@@ -66,7 +66,7 @@ function writeBacktoCSV (toBeSorted, callback) {
 This is where the excution starts:
 Go to the sortedMovies.csv to see the sorted movies
 */
-function MoviesReleaseDate (title)  {
+function MoviesReleaseDate (title, next)  {
   movieTitle = argv.t || title; 
   async.waterfall([
     OMDBapiRequest,
@@ -75,16 +75,22 @@ function MoviesReleaseDate (title)  {
     writeBacktoCSV 
     ], function (err, res) {
       if (err) {
-        console.log('ERROR', err);
+        next(err)
       } else {
-        console.log('Sorting Complete.');
+        next()
       }
     }
   )
 }
 
 if (argv.t !== null) { 
-  MoviesReleaseDate()
+  MoviesReleaseDate(movieTitle, function (err, res) {
+    if (err) {
+      console.log('ERR', err)
+    } else {
+      console.log('DONE')
+    }
+  })
 } 
 
 module.exports = {
