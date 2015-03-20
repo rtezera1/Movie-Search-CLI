@@ -18,7 +18,24 @@ It will create sortedMovies.csv file, where you will see the Title of the movie 
 
 Using mocha to test:
 
-  mocha test
+    mocha test
+
+
+### Using it as a Module
+
+You can also use it as a module 
+  Ex:
+    var title = [
+      'the-matrix',
+      'titanic',
+      'training-day'
+    ];
+    Movie-Search-CLI.search.OMDBapi(title, function (err, res) {
+      console.log(err);
+      console.log(res);
+    })
+
+
 
 
   
