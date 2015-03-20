@@ -1,0 +1,12 @@
+{
+  "name": "Movie-Search-CLI",
+  "version": "0.0.1",
+  "description": "Searches movies from the omdpapi and stores them to a file by ranksing",
+  "dependencies": {
+    "async": "*",
+    "yargs": "*",
+    "request": "*",
+    "fs-extra": "*",
+    "ya-csv": "*"
+  }
+}
