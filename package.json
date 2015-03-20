@@ -1,6 +1,6 @@
 {
   "name": "Movie-Search-CLI",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Searches movies from the omdpapi and stores them to a file by ranksing",
   "dependencies": {
     "async": "*",

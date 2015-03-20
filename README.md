@@ -25,7 +25,9 @@ Using mocha to test:
 
 You can also use it as a module 
 
-``
+```
+  var search = require('Movie-Search-CLI');
+
   Ex:
     var title = [
       'the-matrix',
@@ -33,11 +35,11 @@ You can also use it as a module
       'training-day'
     ];
 
-    Movie-Search-CLI.search.OMDBapi(title, function (err, res) {
+    search.OMDBapi(title, function (err, res) {
       console.log(err);
       console.log(res);
     })
-`
+```
 
 
 
