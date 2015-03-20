@@ -3,7 +3,7 @@ var expect = require('chai').expect,
   exec = require('child_process').exec,
   csv = require('ya-csv'),
   fs = require('fs'),
-  index = require('../index.js');
+  index = require('../lib/search.js');
 
 describe('Movie Search CLI', function(){
   it('Organize the Movies by Date released', function(done){
@@ -18,7 +18,7 @@ describe('Movie Search CLI', function(){
     q.fcall(function () {
       var deferred = q.defer();
       // excute the cli 
-      var movieReleaseDate = exec(process.cwd() + '/index.js -t the-matrix');
+      var movieReleaseDate = exec(process.cwd() + '/lib/search.js -t the-matrix');
       // if there is an error, resolve gracefullly
       movieReleaseDate.on('error', function (err) {
         return deferred.reject(err)
@@ -30,7 +30,7 @@ describe('Movie Search CLI', function(){
     }).then(function () {
       var deferred = q.defer();
 
-      var movieReleaseDate = exec(process.cwd() + '/index.js -t titanic');
+      var movieReleaseDate = exec(process.cwd() + '/lib/search.js -t titanic');
 
       movieReleaseDate.on('error', function (err) {
 
@@ -43,7 +43,7 @@ describe('Movie Search CLI', function(){
     }).then(function () {
       var deferred = q.defer();
 
-      var movieReleaseDate = exec(process.cwd() + '/index.js -t few-good-men');
+      var movieReleaseDate = exec(process.cwd() + '/lib/search.js -t few-good-men');
 
       movieReleaseDate.on('error', function (err) {
 
@@ -78,7 +78,7 @@ describe('Movie Search CLI', function(){
   it('Throws an error if the movie isnt found', function (done) {
     this.timeout(0);
     // excute the cli 
-    exec(process.cwd() + '/index.js -t the-robeltedddd -v true', function (err, stdout, stderr) {
+    exec(process.cwd() + '/lib/search.js -t the-robeltedddd -v true', function (err, stdout, stderr) {
       expect(stdout).to.equal('Movie not found!\n');
       done()
     });

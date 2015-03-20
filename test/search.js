@@ -1,4 +1,4 @@
-var search = require('../lib/search.js'),
+var search = require('../index.js'),
   async = require('async'),
   expect = require('chai').expect;
 

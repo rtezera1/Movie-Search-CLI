@@ -14,7 +14,24 @@
     "mocha": "*",
     "chai": "*"
   },
-   "scripts": {
+  "scripts": {
     "test": "mocha test"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rtezera1/Movie-Search-CLI.git"
+  },
+  "keywords": [
+    "movie-search"
+  ],
+  "author": "Robel Tezera <robeltadesse01@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rtezera1/Movie-Search-CLI/issues"
+  },
+  "homepage": "https://github.com/rtezera1/Movie-Search-CLI"
 }
