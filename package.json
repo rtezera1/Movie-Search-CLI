@@ -8,5 +8,11 @@
     "request": "*",
     "fs-extra": "*",
     "ya-csv": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+   "scripts": {
+    "test": "mocha test"
   }
 }

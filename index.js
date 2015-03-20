@@ -3,22 +3,22 @@
 var async = require('async'),
   request = require('request'),
   fs = require('fs-extra'),
-  csv = require('ya-csv');
+  csv = require('ya-csv'),
+  movieTitle;
 
 var argv = require('yargs')
     .usage('-t [Title of Movie] Ex. Titanic or The-Matrix')
     .alias('t', 'Movie Title')
-    .demand('t')
     .argv;
 
 // Makes a request to the OMDBapi to get JSON object about a movie specified
 function OMDBapiRequest (callback) {
-  var movieTitle = argv.t; 
   request('http://www.omdbapi.com/?t=' + movieTitle + '&y=&plot=short&r=json', function (err, res) {
     if (err) {
       callback(err)
     } else {
-      var MovieParsed = JSON.parse(res.body)
+      console.log('dlkfjd')
+      var MovieParsed = JSON.parse(res.body);
       callback(null, MovieParsed)
     }
   })
@@ -66,18 +66,29 @@ function writeBacktoCSV (toBeSorted, callback) {
 This is where the excution starts:
 Go to the sortedMovies.csv to see the sorted movies
 */
-async.waterfall([
-  OMDBapiRequest,
-  ParseMovieData,
-  SortMovies,
-  writeBacktoCSV 
-  ], function (err, res) {
-    if (err) {
-      console.log('ERROR', err);
-    } else {
-      console.log('Sorting Complete.');
+function MoviesReleaseDate (title)  {
+  movieTitle = argv.t || title; 
+  async.waterfall([
+    OMDBapiRequest,
+    ParseMovieData,
+    SortMovies,
+    writeBacktoCSV 
+    ], function (err, res) {
+      if (err) {
+        console.log('ERROR', err);
+      } else {
+        console.log('Sorting Complete.');
+      }
     }
-  }
-)
+  )
+}
+
+if (argv.t !== null) { 
+  MoviesReleaseDate()
+} 
+
+module.exports = {
+  MoviesReleaseDate: MoviesReleaseDate
+}
   
 
