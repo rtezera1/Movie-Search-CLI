@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/rtezera1/movie-search-cli.svg?branch=master)](https://travis-ci.org/rtezera1/movie-search-cli)
 
+[![Coverage Status](https://coveralls.io/repos/rtezera1/movie-search-cli/badge.svg)](https://coveralls.io/r/rtezera1/movie-search-cli)
+
 #### Instuctions
 
 To get started: 
