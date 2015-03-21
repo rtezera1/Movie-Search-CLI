@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/robeltezera/.nvm/v0.10.32/bin/node',
+1 verbose cli   '/Users/robeltezera/.nvm/v0.10.32/bin/npm',
+1 verbose cli   'run-script',
+1 verbose cli   'test-on-travis' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose run-script [ 'pretest-on-travis', 'test-on-travis', 'posttest-on-travis' ]
+5 info pretest-on-travis movie-search-cli@0.1.0
+6 info test-on-travis movie-search-cli@0.1.0
+7 verbose unsafe-perm in lifecycle true
+8 info movie-search-cli@0.1.0 Failed to exec test-on-travis script
+9 error movie-search-cli@0.1.0 test-on-travis: `istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage`
+9 error Exit status 8
+10 error Failed at the movie-search-cli@0.1.0 test-on-travis script.
+10 error This is most likely a problem with the movie-search-cli package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+10 error You can get their info via:
+10 error     npm owner ls movie-search-cli
+10 error There is likely additional logging output above.
+11 error System Darwin 14.1.0
+12 error command "/Users/robeltezera/.nvm/v0.10.32/bin/node" "/Users/robeltezera/.nvm/v0.10.32/bin/npm" "run-script" "test-on-travis"
+13 error cwd /Users/robeltezera/Desktop/movie-search-cLI
+14 error node -v v0.10.32
+15 error npm -v 1.4.28
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]
