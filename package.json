@@ -4,11 +4,13 @@
   "description": "Searches movies from the omdpapi and stores them to a file by ranksing",
   "dependencies": {
     "async": "*",
-    "yargs": "*",
-    "request": "*",
+    "coveralls": "^2.11.2",
     "fs-extra": "*",
+    "mocha-lcov-reporter": "0.0.2",
+    "q": "*",
+    "request": "*",
     "ya-csv": "*",
-    "q": "*"
+    "yargs": "*"
   },
   "devDependencies": {
     "mocha": "*",
