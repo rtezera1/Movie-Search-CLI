@@ -1,4 +1,4 @@
-## Movie Search CLI
+## Movie Search Module and CLI
 
 #### Instuctions
 
