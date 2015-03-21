@@ -2,7 +2,8 @@ language: node_js
 node_js:
   - "0.10"
 before_script:
-  - npm install
+  - npm install -g grunt-cli
+  - npm install -g istanbul
 notifications:
   email: false
-script: npm run-script test-on-travis
+script: npm run-script coverage
