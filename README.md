@@ -1,6 +1,6 @@
 ## Movie Search Module and CLI
 
-https://travis-ci.org/rtezera1/movie-search-cli.svg?branch=master
+[![Build Status](https://travis-ci.org/rtezera1/movie-search-cli.svg?branch=master)](https://travis-ci.org/rtezera1/movie-search-cli)
 
 #### Instuctions
 
