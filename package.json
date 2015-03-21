@@ -12,10 +12,13 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "chai": "*"
+    "chai": "*",
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-jshint": "0.6.4 "
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "grunt --verbose"
   },
   "main": "index.js",
   "directories": {
