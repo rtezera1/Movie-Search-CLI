@@ -1,5 +1,7 @@
 ## Movie Search Module and CLI
 
+https://travis-ci.org/rtezera1/movie-search-cli.svg?branch=master
+
 #### Instuctions
 
 To get started: 
