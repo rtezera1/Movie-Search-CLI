@@ -19,7 +19,7 @@ describe('Search Module', function () {
     });
   });
 
-  it('Throws an error if titles are not in array format', function (done) {
+  it('throws an error if titles are not in array format', function (done) {
     var title = 'titanic';
     search.OMDBapi(title, function (err, res) {
       if (err) {
@@ -30,4 +30,16 @@ describe('Search Module', function () {
       }
     });
   });
+
+  it('should throw an error if the movie isnt found', function (done) {
+    var title = ['cdlkfjdfkj'];
+    search.OMDBapi(title, function (err, res) {
+      if (err) {
+        expect(err).to.equal('Movie not found!');
+        done();
+      } else {
+        throw new Error('The expect wasnt thrown');
+      }
+    });
+  })
 });

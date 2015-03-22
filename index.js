@@ -14,6 +14,8 @@ module.exports = {
         request('http://www.omdbapi.com/?t=' + movie + '&y=&plot=short&r=json', function (err, res, body) {
           if (err) {
             callback(err);
+          } else if (JSON.parse(body).Response == 'False') {
+            callback(JSON.parse(body).Error);
           } else {
             list[JSON.parse(body).Title] = JSON.parse(body).Year;
           }
