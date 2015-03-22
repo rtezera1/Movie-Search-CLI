@@ -4,7 +4,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/rtezera1/movie-search-cli/badge.svg)](https://coveralls.io/r/rtezera1/movie-search-cli)
 
-#### Instuctions
+#### Instructions
 
 To get started: 
  
@@ -29,7 +29,7 @@ Using mocha to test:
 
 You can also use it as a module 
 
-```
+```javascript
   var search = require('Movie-Search-CLI');
 
   Ex:
