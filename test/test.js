@@ -3,7 +3,7 @@ var expect = require('chai').expect,
   exec = require('child_process').exec,
   csv = require('ya-csv'),
   fs = require('fs'),
-  index = require('../lib/search.js');
+  search = require('../lib/search.js');
 
 describe('Movie Search CLI', function(){
   it('Organize the Movies by Date released', function(done){

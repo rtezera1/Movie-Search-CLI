@@ -35,6 +35,22 @@ Using mocha to test:
     })
 ```
 
+You can also save the list in an excel spreadsheet to be parsed.
+
+```javascript
+    Ex: 
+    var fileName = process.cwd() + '/test/movies.xls';
+    search.ExceltoOMDB(fileName, function (err, res) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+      }
+    });
+    Output: 
+    {'Titanic': '1997', 'The Matrix': '1999', 'Training Day': '2001' }
+``` 
+
 You can use the CLI to search a movie and find out the year it was released. As you keep searching, it organizes the searched moves
 according to it's release date descending. 
 To operate:

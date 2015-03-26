@@ -10,7 +10,9 @@
     "q": "*",
     "request": "*",
     "ya-csv": "*",
-    "yargs": "*"
+    "yargs": "*",
+    "xls-to-json": "*",
+    "underscore": "*"
   },
   "devDependencies": {
     "chai": "*",
