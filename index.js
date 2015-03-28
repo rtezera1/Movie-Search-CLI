@@ -13,12 +13,14 @@ var async = require('async'),
         async.map(title, function (movie, cb) {
         // make a request to the array
         request('http://www.omdbapi.com/?t=' + movie + '&y=&plot=short&r=json', function (err, res, body) {
+          var bodyObj = JSON.parse(body);
+
           if (err) {
             return cb(err);
-          } else if (JSON.parse(body).Response == 'False') {
-            return cb(JSON.parse(body).Error);
+          } else if (bodyObj.Response == 'False') {
+            return cb(bodyObj.Error);
           } else {
-            list[JSON.parse(body).Title] = JSON.parse(body).Year;
+            list[bodyObj.Title] = bodyObj.Year;
           }
           return cb(null, list);
         });
