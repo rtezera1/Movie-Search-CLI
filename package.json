@@ -7,7 +7,7 @@
     "fs-extra": "*",
     "request": "*",
     "underscore": "*",
-    "xls-to-json": "*",
+    "xlsjs": "^0.7.5",
     "ya-csv": "*",
     "yargs": "*"
   },
