@@ -9,7 +9,6 @@ var async = require('async'),
     if (Array.isArray(title) !== true) {
       callback('Make sure the arguement is in Array format.');
      } else {
-      var list = { };
         async.map(title, function (movie, cb) {
         // make a request to the array
         request('http://www.omdbapi.com/?t=' + movie + '&y=&plot=short&r=json', function (err, res, body) {
@@ -20,11 +19,16 @@ var async = require('async'),
           } else if (bodyObj.Response == 'False') {
             return cb(bodyObj.Error);
           } else {
-            list[bodyObj.Title] = bodyObj.Year;
+            return cb(null, [bodyObj.Title, bodyObj.Year]);
           }
-          return cb(null, list);
         });
-      }, callback);
+      }, function (err, array) {
+        if (err) {
+          callback(err);
+        } else {
+          callback(null, _.object(array));
+        }
+      });
     }
   }
 
