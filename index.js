@@ -22,13 +22,7 @@ var async = require('async'),
           }
           return cb(null, list);
         });
-      }, function (err, res) {
-        if (err) {
-          callback(err);
-        } else {
-          callback(null, res[0]);
-        }
-      });  
+      }, callback);
     }
   }
   // Parse excel spreadsheet and request OMDBapi to get JSON object
@@ -56,13 +50,7 @@ var async = require('async'),
         });
         res.push(keys[0]);
         var flattened = _.flatten(res);
-        OMDBapi(flattened, function (err, res) {
-          if (err) {
-            callback(err);
-          } else {
-            callback(null, res);
-          }
-        });
+        OMDBapi(flattened, callback);
       }
     });
   }
