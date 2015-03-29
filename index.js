@@ -1,6 +1,7 @@
 var async = require('async'),
   xlsjs = require('xlsjs'),
   _ = require('underscore'),
+  OMDB = require('./lib/common.js'),
   request = require('request');
 
 // Makes a request to the OMDBapi to get JSON object about a movie specified
@@ -11,9 +12,7 @@ var async = require('async'),
      } else {
         async.map(title, function (movie, cb) {
         // make a request to the array
-        request('http://www.omdbapi.com/?t=' + movie + '&y=&plot=short&r=json', function (err, res, body) {
-          var bodyObj = JSON.parse(body);
-
+        OMDB.request(movie, function (err, bodyObj) {
           if (err) {
             return cb(err);
           } else if (bodyObj.Response == 'False') {
