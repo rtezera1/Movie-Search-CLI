@@ -1,6 +1,7 @@
 var async = require('async'),
-  converter = require('xls-to-json'),
+  xlsjs = require('xlsjs'),
   _ = require('underscore'),
+  OMDB = require('./lib/common.js'),
   request = require('request');
 
 // Makes a request to the OMDBapi to get JSON object about a movie specified
@@ -9,73 +10,53 @@ var async = require('async'),
     if (Array.isArray(title) !== true) {
       callback('Make sure the arguement is in Array format.');
      } else {
-      var list = { };
         async.map(title, function (movie, cb) {
         // make a request to the array
-        request('http://www.omdbapi.com/?t=' + movie + '&y=&plot=short&r=json', function (err, res, body) {
+        OMDB.request(movie, function (err, bodyObj) {
           if (err) {
             return cb(err);
-          } else if (JSON.parse(body).Response == 'False') {
-            return cb(JSON.parse(body).Error);
+          } else if (bodyObj.Response == 'False') {
+            return cb(bodyObj.Error);
           } else {
-            list[JSON.parse(body).Title] = JSON.parse(body).Year;
+            return cb(null, [bodyObj.Title, bodyObj.Year]);
           }
-          return cb(null, list);
         });
-      }, function (err, res) {
+      }, function (err, array) {
         if (err) {
           callback(err);
         } else {
-          callback(null, res[0]);
+          callback(null, _.object(array));
         }
-      });  
+      });
     }
   }
+
+  function loadExcelAsJSON (fileName, callback) {
+    var workbook = xlsjs.readFile(fileName);
+    var worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    var sheet_json = xlsjs.utils.sheet_to_json(worksheet, {header: 1});
+    return callback(null, sheet_json);
+  }
+
   // Parse excel spreadsheet and request OMDBapi to get JSON object
   function ExceltoOMDB (fileName, callback) {
     var res = [];
+    loadExcelAsJSON(fileName, console.log);
     // spreadsheet to json convertor 
-    converter({
-      input: fileName,
-      output: null
-    }, function (err, result) {
-      if (err) {
-        // if err, callback an error
-        callback(err);
-      } else {
-        var values;
-        var keys;
-        /**
-          loop through the values and creates an array to be sent
-          to the OMDBapi
-        */
-        result.forEach(function (value) {
-          keys =  _.keys(value);
-          values = _.values(value);
-          res.push(values);
-        });
-        res.push(keys[0]);
-        var flattened = _.flatten(res);
-        OMDBapi(flattened, function (err, res) {
-          if (err) {
-            callback(err);
-          } else {
-            callback(null, res);
-          }
-        });
-      }
-    });
+    loadExcelAsJSON(
+      fileName,
+      function (err, result) {
+        if (err) {
+          // if err, callback an error
+          callback(err);
+        } else {
+          var flattened = _.flatten(result);
+          OMDBapi(flattened, callback);
+        }
+      });
   }
 
 module.exports = {
   OMDBapi: OMDBapi,
   ExceltoOMDB: ExceltoOMDB
 };
-
-
-
-
-
-
-  
-
